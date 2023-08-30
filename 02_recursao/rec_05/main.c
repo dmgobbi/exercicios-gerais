@@ -11,8 +11,8 @@ int main() {
 }
 
 int fatorial(int n) {
-    if (n == 1) {
-        return n;
+    if (n == 0) {
+        return 1;
     }
     return n * fatorial(n - 1);
 }
