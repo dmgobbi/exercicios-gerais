@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 int ContaOcorrencias(int* vet, int numElementos, int numeroProcurado);
 
