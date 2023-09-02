@@ -44,8 +44,12 @@ int comparaData(int dia1, int mes1, int ano1, int dia2, int mes2, int ano2) {
 }
 
 int calculaDiasAteMes(int mes) {
-    int diasNoMes[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int diasNoMes[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30};
     int totalDeDias = 0;
+
+    if (mes < 1 || mes > 12) {
+        return -1;
+    }
 
     for (int i = 0; i < mes; i++) {
         totalDeDias += diasNoMes[i];
@@ -74,15 +78,12 @@ int calculaDiferencaDias(int dia1, int mes1, int ano1, int dia2, int mes2, int a
         dia2 = diaTemp;
     }
     
-    // Calcula a diferenca nos anos
     for (int i = ano1; i < ano2; i++) {
         diferencaDias += verificaBissexto(i) ? 366 : 365;
     }
 
-    // Calcula a diferenca nos meses e dias
-    // Logica ERRADA | corrigir
+    diferencaDias += (calculaDiasAteMes(mes2) + dia2);
     diferencaDias -= (calculaDiasAteMes(mes1) + dia1);
-    diferencaDias += (calculaDiasAteMes(mes2) + dia2); 
 
     if (verificaBissexto(ano2) && mes2 >= 2 ) {
         diferencaDias++;
