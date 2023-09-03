@@ -23,12 +23,11 @@ int main() {
             case 1:
                 printf("Tamanho da string: %d\n\n", string_length(str));
                 break;
-            case 2: {
+            case 2:
                 char strCopy[MAX_STRING];
                 string_copy(str, strCopy);
                 printf("String copiada: %s\n\n", strCopy);
                 break;
-            }
             case 3:
                 string_upper(str);
                 printf("String convertida para maiusculas: %s\n\n", str);
