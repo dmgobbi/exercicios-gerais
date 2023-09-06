@@ -7,7 +7,7 @@ int verificaDataValida(int dia, int mes, int ano) {
 }
 
 void imprimeMesExtenso(int mes) {
-    const char mesExtenso[][10] = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    const char mesExtenso[][10] = {"Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho",
                                 "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
     if (mes >= 1 && mes <= 12) {
         printf("%s", mesExtenso[mes - 1]);

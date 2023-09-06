@@ -17,10 +17,10 @@ int main() {
     printf("Segunda data: ");
     imprimeDataExtenso(dia2, mes2, ano2);
 
-    int comparadata = comparaData(dia1, mes1, ano1, dia2, mes2, ano2); 
-    if (comparadata == -1) {
+    int dataComparada = comparaData(dia1, mes1, ano1, dia2, mes2, ano2); 
+    if (dataComparada == -1) {
         printf("A primeira data eh mais antiga\n");
-    } else if (comparadata == 0) {
+    } else if (!dataComparada) {
         printf("As datas sao iguais\n");
     } else {
         printf("A segunda data eh mais antiga\n");
