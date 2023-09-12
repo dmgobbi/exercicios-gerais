@@ -8,7 +8,8 @@ int verificaDataValida(int dia, int mes, int ano) {
 
 void imprimeMesExtenso(int mes) {
     const char mesExtenso[][10] = {"Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho",
-                                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+                                   "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+    
     if (mes >= 1 && mes <= 12) {
         printf("%s", mesExtenso[mes - 1]);
     } else {
@@ -62,7 +63,7 @@ int calculaDiferencaDias(int dia1, int mes1, int ano1, int dia2, int mes2, int a
     int diferencaDias = 0;
     int dataComparada = comparaData(dia1, mes1, ano1, dia2, mes2, ano2);
 
-    if (comparaData == 0) {
+    if (!dataComparada) {
         return 0;
     } else if (dataComparada == 1) {
         int anoTemp = ano1;
@@ -84,10 +85,6 @@ int calculaDiferencaDias(int dia1, int mes1, int ano1, int dia2, int mes2, int a
 
     diferencaDias += (calculaDiasAteMes(mes2) + dia2);
     diferencaDias -= (calculaDiasAteMes(mes1) + dia1);
-
-    if (verificaBissexto(ano2) && mes2 >= 2 ) {
-        diferencaDias++;
-    }
 
     return diferencaDias;
 }
