@@ -1,25 +1,46 @@
 #include "jogador.h"
-//#include "jogada.h"
+#include "jogada.h"
 #include <stdio.h>
 
 tJogador CriaJogador(int idJogador) {
     tJogador jogador;
-    jogador.id = (idJogador == 1 || idJogador == 2) ? idJogador : -1;
+    jogador.id = idJogador;
     return jogador;
 }
 
 tTabuleiro JogaJogador(tJogador jogador, tTabuleiro tabuleiro) {
-    /* tJogada jogada;
-    jogada = LeJogada();
-    int x = ObtemJogadaX(jogada);
-    int y = ObtemJogadaY(jogada); */
+    int x, y, livre = 0, valida = 0;
+    do {
+      printf("Jogador %d\n", jogador.id);
+      tJogada jogada = LeJogada();
+      if (!FoiJogadaBemSucedida(jogada)) {
+        scanf("%*[^\n]");
+        scanf("%*c");
+        printf("Formato invalido!\n");
+        continue;
+      }
 
-    if (EhPosicaoValidaTabuleiro(x, y) && EstaLivrePosicaoTabuleiro(tabuleiro, x, y)) {
-        tabuleiro = MarcaPosicaoTabuleiro(tabuleiro, jogador.id, x, y);
-    }
+      x = ObtemJogadaX(jogada);
+      y = ObtemJogadaY(jogada);
+
+      valida = EhPosicaoValidaTabuleiro(x, y);
+      if (valida) {
+        livre = EstaLivrePosicaoTabuleiro(tabuleiro, x, y);
+        if (!livre) {
+          printf("Posicao invalida (OCUPADA - [%d,%d] )!", x, y);
+        }
+      } else {
+        printf("Posicao invalida (FORA DO TABULEIRO - [%d,%d] )!", x, y);
+      }
+    } while (!livre || !valida);
+
+    int peca = (jogador.id == ID_JOGADOR_1 ? PECA_1: PECA_2);
+    printf("Jogada [%d,%d]!\n", x, y);
+    tabuleiro = MarcaPosicaoTabuleiro(tabuleiro, jogador.id, x, y);
+    ImprimeTabuleiro(tabuleiro);
     return tabuleiro;
-}
-
+} 
+  
 int VenceuJogador(tJogador jogador, tTabuleiro tabuleiro) {
     int vencedor = 0;
 
