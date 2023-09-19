@@ -2,9 +2,10 @@
 #include "jogo.h"
 
 int main() {
-    while (1) {
+    do {
         tJogo jogo = CriaJogo();
         ComecaJogo(jogo);
-    }
+    } while (ContinuaJogo());
+    
     return 0;
 }

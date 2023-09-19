@@ -27,10 +27,10 @@ tTabuleiro JogaJogador(tJogador jogador, tTabuleiro tabuleiro) {
       if (valida) {
         livre = EstaLivrePosicaoTabuleiro(tabuleiro, x, y);
         if (!livre) {
-          printf("Posicao invalida (OCUPADA - [%d,%d] )!", x, y);
+          printf("Posicao invalida (OCUPADA - [%d,%d] )!\n", x, y);
         }
       } else {
-        printf("Posicao invalida (FORA DO TABULEIRO - [%d,%d] )!", x, y);
+        printf("Posicao invalida (FORA DO TABULEIRO - [%d,%d] )!\n", x, y);
       }
     } while (!livre || !valida);
 

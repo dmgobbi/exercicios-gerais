@@ -26,10 +26,6 @@ void ComecaJogo(tJogo jogo) {
       break;
     }    
   }
-
-  if (!ContinuaJogo()) {
-    exit(1);
-  }
 }
 
 int AcabouJogo(tJogo jogo) {
