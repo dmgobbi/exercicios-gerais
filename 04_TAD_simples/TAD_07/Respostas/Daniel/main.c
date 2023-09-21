@@ -20,7 +20,8 @@ int main() {
     printf("Segunda data: ");
     ImprimeDataExtenso(data2);
 
-    int dataComparada = ComparaData(data1, data2); 
+    int dataComparada = ComparaData(data2, data1); 
+
     if (dataComparada == -1) {
         printf("A primeira data eh mais antiga\n");
     } else if (!dataComparada) {
