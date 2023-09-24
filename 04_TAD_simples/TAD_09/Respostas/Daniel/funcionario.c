@@ -2,19 +2,19 @@
 #include "funcionario.h"
 
 tFuncionario criaFuncionario(int id, float salario) {
-    tFuncionario f;
-    f.id = id;
-    f.salario = salario;
-    return f;
+    tFuncionario funcionario;
+    funcionario.id = id;
+    funcionario.salario = salario;
+    return funcionario;
 }
 
 tFuncionario leFuncionario() {
-    tFuncionario f;
+    tFuncionario funcionario;
     int id;
     float salario;
     scanf("%d %f", &id, &salario);
-    f = criaFuncionario(id, salario);
-    return f;
+    funcionario = criaFuncionario(id, salario);
+    return funcionario;
 }
 
 int getIdFuncionario(tFuncionario funcionario) {

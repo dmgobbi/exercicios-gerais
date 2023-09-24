@@ -12,7 +12,6 @@ int main() {
 
     for (int i = 0; i < qtdEmpresas; i++) {
         imprimeEmpresa(empresa[i]);
-        printf("\n");
     }
 
     return 0;
