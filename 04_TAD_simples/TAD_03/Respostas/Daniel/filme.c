@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "filme.h"
 
 tFilme criarFilme (char* nome, int codigo, int valor, int quantidade) {
@@ -17,9 +18,10 @@ tFilme lerFilme () {
     int codigo, valor, quantidade;
     char nome[MAX_CARACTERES];
 
-    if (scanf("%d,%s,%d,%d", &codigo, nome, &valor, &quantidade) != 4) {
+    if (scanf("%d,%[^,],%d,%d", &codigo, nome, &valor, &quantidade) != 4) {
         printf("Erro ao ler filme\n");
-        exit(1);
+        filme.codigo = -1;
+        return filme;
     }
 
     filme = criarFilme(nome, codigo, valor, quantidade);
