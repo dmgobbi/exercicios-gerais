@@ -51,11 +51,11 @@ int NumeroDiasMes(tData data) {
 int ComparaData(tData data1, tData data2) {
     if ((data1.ano > data2.ano) || (data1.ano == data2.ano && data1.mes > data2.mes) || 
         (data1.ano == data2.ano && data1.mes == data2.mes && data1.dia > data2.dia)) {
-        return -1;
+        return 1;
     } else if (data1.ano == data2.ano && data1.mes == data2.mes && data1.dia == data2.dia) {
         return 0;
     }
-    return 1;
+    return -1;
 }
 
 int CalculaDiasAteMes(tData data) {
@@ -81,7 +81,7 @@ int CalculaDiferencaDias(tData data1, tData data2) {
 
     if (!dataComparada) {
         return 0;
-    } else if (dataComparada == -1) {
+    } else if (dataComparada == 1) {
         int anoTemp = data1.ano;
         int mesTemp = data1.mes;
         int diaTemp = data1.dia;
