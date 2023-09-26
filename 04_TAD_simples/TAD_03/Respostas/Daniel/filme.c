@@ -20,8 +20,7 @@ tFilme lerFilme () {
 
     if (scanf("%d,%[^,],%d,%d", &codigo, nome, &valor, &quantidade) != 4) {
         printf("Erro ao ler filme\n");
-        filme.codigo = -1;
-        return filme;
+        exit(1);
     }
 
     filme = criarFilme(nome, codigo, valor, quantidade);
