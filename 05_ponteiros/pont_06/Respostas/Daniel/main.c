@@ -12,8 +12,8 @@ int main()
     LeData(&dataFim); 
      
     data = dataIni; 
-    while( !EhIgual(data, dataFim) ){ 
-        ImprimeData(data); 
+    while( !EhIgual(&data, &dataFim) ){ 
+        ImprimeData(&data); 
         printf("\n"); 
    
         AvancaParaDiaSeguinte(&data); 
