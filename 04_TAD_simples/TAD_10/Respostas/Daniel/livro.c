@@ -9,8 +9,8 @@ tLivros lerLivro() {
     char autor[50];
     int anoPublicacao;
 
-    scanf("%99[^\n]\n", titulo);
-    scanf("%49[^\n]\n", autor);
+    scanf(" %99[^\n]\n", titulo);
+    scanf(" %49[^\n]\n", autor);
     scanf("%d\n", &anoPublicacao);
 
     strcpy(livro.titulo, titulo);
