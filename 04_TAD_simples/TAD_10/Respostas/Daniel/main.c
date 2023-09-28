@@ -33,8 +33,7 @@ int main() {
             case 2:    
                 scanf("%*c");
                 scanf("%99[^\n]\n", titulo);
-                biblioteca = removerLivroDaBiblioteca(biblioteca, titulo);
-                
+                biblioteca = removerLivroDaBiblioteca(biblioteca, titulo);      
                 break;
             case 3:
                 listarLivrosDaBiblioteca(biblioteca);
@@ -43,7 +42,6 @@ int main() {
                 printf("Operacao invalida!\n");
                 return 1;
         }
-    
         N--;
     } 
     return 0;
