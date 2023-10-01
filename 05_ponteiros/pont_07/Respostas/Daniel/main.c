@@ -1,4 +1,5 @@
 #include <stdio.h> 
+#include <stdlib.h>
 #include "evento.h" 
  
 int main() { 
@@ -13,9 +14,9 @@ int main() {
     printf("4 - Trocar a posicao entre dois eventos\n"); 
     printf("5 - Sair\n"); 
  
-    while (opcao != 5) { 
+    while (1) { 
         scanf("%d", &opcao); 
-        
+
         switch (opcao) { 
             case 1: 
                 cadastrarEvento(eventos, &numEventos); 
@@ -32,7 +33,7 @@ int main() {
                 break; 
             case 5: 
                 printf("Saindo...\n"); 
-                break; 
+                exit(0);
             default: 
                 printf("Opcao invalida!\n"); 
         } 
