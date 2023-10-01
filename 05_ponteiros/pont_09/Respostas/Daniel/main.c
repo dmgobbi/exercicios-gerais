@@ -16,7 +16,7 @@ int main() {
         // LePessoa(&pessoa[i]);
     }
 
-    AssociaFamiliasGruposPessoas(&pessoa);
+    AssociaFamiliasGruposPessoas(pessoa);
     
     for (int i = 0; i < qtdPessoas; i++) {
         ImprimePessoa(pessoa + i);       
