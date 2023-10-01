@@ -16,7 +16,7 @@ int main() {
  
     while (1) { 
         scanf("%d", &opcao); 
-
+        
         switch (opcao) { 
             case 1: 
                 cadastrarEvento(eventos, &numEventos); 
