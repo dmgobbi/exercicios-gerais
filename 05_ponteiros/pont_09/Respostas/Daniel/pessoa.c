@@ -78,5 +78,3 @@ void AssociaFamiliasGruposPessoas(tPessoa *pessoas) {
         } 
     }
 }
-
-        
