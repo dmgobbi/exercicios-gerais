@@ -1,26 +1,21 @@
 #include <stdio.h> 
 #include "evento.h" 
  
-void imprimeMenu() { 
+int main() { 
+    Evento eventos[MAX_EVENTOS]; 
+    int indiceA, indiceB; 
+    int numEventos = 0, opcao = 0; 
+
     printf("\n===== Menu =====\n"); 
     printf("1 - Cadastrar um evento\n"); 
     printf("2 - Exibir todos os eventos\n"); 
     printf("3 - Trocar data de um evento\n"); 
     printf("4 - Trocar a posicao entre dois eventos\n"); 
     printf("5 - Sair\n"); 
-} 
- 
-int main() { 
-    Evento eventos[MAX_EVENTOS]; 
-    int indiceA, indiceB; 
-    int numEventos = 0; 
-    int opcao = 0; 
-   
-    imprimeMenu(); 
  
     while (opcao != 5) { 
         scanf("%d", &opcao); 
- 
+        
         switch (opcao) { 
             case 1: 
                 cadastrarEvento(eventos, &numEventos); 
@@ -42,6 +37,5 @@ int main() {
                 printf("Opcao invalida!\n"); 
         } 
     } 
- 
     return 0; 
 } 
