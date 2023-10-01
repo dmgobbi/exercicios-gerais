@@ -17,10 +17,15 @@ void cadastrarEvento(Evento* eventos, int* numEventos) {
     scanf("%d %d %d", &dia, &mes, &ano);
 
     strcpy(eventos[*numEventos].nome, nome);
-    eventos[*numEventos].dia = dia;
-    eventos[*numEventos].mes = mes;
-    eventos[*numEventos].ano = ano;
-    *numEventos += 1;
+    //eventos[*numEventos].dia = dia;
+    //eventos[*numEventos].mes = mes;
+    //eventos[*numEventos].ano = ano;
+    //*numEventos += 1;
+
+    (eventos + *numEventos)->dia = dia;
+    (eventos + *numEventos)->mes = mes;
+    (eventos + *numEventos)->ano = ano;
+    (*numEventos)++;
 
     printf("Evento cadastrado com sucesso!\n");
 }
@@ -34,6 +39,7 @@ void exibirEventos(Evento* eventos, int* numEventos) {
     printf("Eventos cadastrados:\n");
     for (int i = 0; i < *numEventos; i++) {
         printf("%d - %s - %02d/%02d/%04d\n", i, eventos[i].nome, eventos[i].dia, eventos[i].mes, eventos[i].ano);
+        //printf("%d - %s - %02d/%02d/%04d\n", i, (eventos + i)->nome, (eventos + i)->dia, (eventos + i)->mes, (eventos + i)->ano);
     }
 }
 
@@ -50,14 +56,14 @@ void trocarDataEvento(Evento* eventos, int* numEventos) {
 
     scanf("%d %d %d", &dia, &mes, &ano);
 
-    for (int i = 0; i < *numEventos; i++) {
-        if (i == indice) {
-            eventos[i].dia = dia;
-            eventos[i].mes = mes;
-            eventos[i].ano = ano;   
-            break; 
-        }
-    }
+
+    eventos[indice].dia = dia;
+    eventos[indice].mes = mes;
+    eventos[indice].ano = ano;   
+
+    //(eventos + indice)->dia = dia;
+    //(eventos + indice)->mes = mes;
+    //(eventos + indice)->ano = ano;
 
     printf("Data modificada com sucesso!\n");
 }
@@ -74,18 +80,13 @@ void trocarIndicesEventos(Evento* eventos, int* indiceA, int* indiceB, int* numE
         return;
     }
 
-    for (int i = 0; i < *numEventos; i++) {
-        if (i == *indiceA) {
-            aux = eventos[*indiceA]; 
-            eventoSalvo = 1;
-        }
+    //aux = eventos[*indiceA];
+    //eventos[*indiceA] = eventos[*indiceB];
+    //eventos[*indiceB] = aux;
 
-        if (eventoSalvo) {
-            eventos[*indiceA] = eventos[*indiceB];
-            eventos[*indiceB] = aux;  
-            break;
-        }
-    }
+    aux = *(eventos + *indiceA);
+    *(eventos + *indiceA) = *(eventos + *indiceB);
+    *(eventos + *indiceB) = aux;
 
     printf("Eventos trocados com sucesso!\n");
 }
