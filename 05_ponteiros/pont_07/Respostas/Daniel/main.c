@@ -12,9 +12,10 @@ void imprimeMenu() {
  
 int main() { 
     Evento eventos[MAX_EVENTOS]; 
+    int indiceA, indiceB; 
     int numEventos = 0; 
     int opcao = 0; 
- 
+   
     imprimeMenu(); 
  
     while (opcao != 5) { 
@@ -31,7 +32,6 @@ int main() {
                 trocarDataEvento(eventos, &numEventos); 
                 break; 
             case 4: 
-                int indiceA, indiceB; 
                 scanf("%d %d", &indiceA, &indiceB);  
                 trocarIndicesEventos(eventos, &indiceA, &indiceB, &numEventos); 
                 break; 
