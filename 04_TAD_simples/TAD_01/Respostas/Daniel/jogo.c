@@ -14,17 +14,27 @@ void ComecaJogo(tJogo jogo) {
   while (1) {
     jogo.tabuleiro = JogaJogador(jogo.jogador1, jogo.tabuleiro);
     ImprimeTabuleiro(jogo.tabuleiro);
-    if (VenceuJogador(jogo.jogador1, jogo.tabuleiro) || AcabouJogo(jogo)) {
+    if (VenceuJogador(jogo.jogador1, jogo.tabuleiro)) {
       printf("JOGADOR 1 Venceu!\n");
+      break;
+    }
+
+    if (AcabouJogo(jogo)) {
+      printf("Sem vencedor!\n");
       break;
     }
 
     jogo.tabuleiro = JogaJogador(jogo.jogador2, jogo.tabuleiro);
     ImprimeTabuleiro(jogo.tabuleiro);
-    if (VenceuJogador(jogo.jogador2, jogo.tabuleiro) || AcabouJogo(jogo)) {
+    if (VenceuJogador(jogo.jogador2, jogo.tabuleiro)) {
       printf("JOGADOR 2 Venceu!\n");
       break;
     }    
+
+    if (AcabouJogo(jogo)) {
+      printf("Sem vencedor!\n");
+      break;
+    }
   }
 }
 

@@ -34,7 +34,6 @@ tTabuleiro JogaJogador(tJogador jogador, tTabuleiro tabuleiro) {
       }
     } while (!livre || !valida);
 
-    int peca = (jogador.id == ID_JOGADOR_1 ? PECA_1: PECA_2);
     printf("Jogada [%d,%d]!\n", x, y);
     tabuleiro = MarcaPosicaoTabuleiro(tabuleiro, jogador.id, x, y);
     return tabuleiro;
