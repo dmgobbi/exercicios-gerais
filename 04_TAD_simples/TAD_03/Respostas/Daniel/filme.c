@@ -13,12 +13,12 @@ tFilme criarFilme (char* nome, int codigo, int valor, int quantidade) {
     return filme;
 }
 
-tFilme lerFilme () {
+tFilme leFilme (int codigo) {
     tFilme filme;
-    int codigo, valor, quantidade;
+    int valor, quantidade;
     char nome[MAX_CARACTERES];
 
-    if (scanf("%d,%[^,],%d,%d", &codigo, nome, &valor, &quantidade) != 4) {
+    if (scanf(" %[^,],%d,%d", nome, &valor, &quantidade) != 3) {
         printf("Erro ao ler filme\n");
         exit(1);
     }

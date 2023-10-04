@@ -24,12 +24,12 @@ int verificarFilmeCadastrado (tLocadora locadora, int codigo) {
     return 0;
 }
 
-tLocadora cadastrarFilmeLocadora (tLocadora locadora, char* nome, int codigo, int valor, int quantidade) {
+tLocadora cadastrarFilmeLocadora (tLocadora locadora, tFilme filme) {
     int qtdAtual = locadora.numFilmes;
     int jaCadastrado = 0;
 
     for (int i = 0; i < qtdAtual; i++) {
-        if (verificarFilmeCadastrado(locadora, codigo)) {
+        if (verificarFilmeCadastrado(locadora, filme.codigo)) {
             printf("Filme ja cadastrado no estoque\n");
             jaCadastrado = 1;
             break;
@@ -37,9 +37,9 @@ tLocadora cadastrarFilmeLocadora (tLocadora locadora, char* nome, int codigo, in
     }
 
     if (!jaCadastrado) {
-        locadora.filme[qtdAtual] = criarFilme(nome, codigo, valor, quantidade); 
+        locadora.filme[qtdAtual] = criarFilme(filme.nome, filme.codigo, filme.valor, filme.qtdEstoque); 
         locadora.numFilmes++;
-        printf("Filme cadastrado %d - ", codigo);
+        printf("Filme cadastrado %d - ", filme.codigo);
         imprimirNomeFilme(locadora.filme[qtdAtual]);
         printf("\n");
     }
@@ -58,7 +58,7 @@ tLocadora lerCadastroLocadora (tLocadora locadora) {
         }
 
         filme = criarFilme(nome, codigo, valor, quantidade);
-        locadora = cadastrarFilmeLocadora(locadora, filme.nome, filme.codigo, filme.valor, filme.qtdEstoque);
+        locadora = cadastrarFilmeLocadora(locadora, filme);
     }
     return locadora;
 }
