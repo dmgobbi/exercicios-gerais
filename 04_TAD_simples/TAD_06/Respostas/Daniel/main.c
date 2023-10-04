@@ -5,6 +5,7 @@
 
 int main() {
     int rows1, cols1, rows2, cols2;
+    int scalar, numMatrix;
 
     scanf("%d %d", &rows1, &cols1);
     tMatrix matrix1 = MatrixCreate(rows1, cols1);
@@ -55,7 +56,6 @@ int main() {
                 }
                 break;
             case 4:
-                int scalar, numMatrix;
                 scanf("%d %d", &scalar, &numMatrix);
 
                 switch (numMatrix) {
