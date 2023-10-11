@@ -13,6 +13,9 @@ Tela CriarTela(int altura, int largura) {
 void RegistraBotaoTela(Tela *t, Botao b) {
     if (t->qntBotoes < MAX_BOTOES) {
         t->botoes[t->qntBotoes++] = b;
+    } else {
+        printf("Nao ha espaco para registrar um botao na tela!\n");
+        exit(8);
     }
 }
 
