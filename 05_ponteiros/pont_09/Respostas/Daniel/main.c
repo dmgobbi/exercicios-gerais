@@ -14,13 +14,15 @@ int main() {
 
         // pessoa[i] = CriaPessoa();
         // LePessoa(&pessoa[i]);
+        // LePessoa(&*(pessoa + i));
     }
 
     AssociaFamiliasGruposPessoas(pessoa);
     
     for (int i = 0; i < qtdPessoas; i++) {
         ImprimePessoa(pessoa + i);       
-        //ImprimePessoa(&pessoa[i]);
+        // ImprimePessoa(&pessoa[i]);
+        // ImprimePessoa(&*(pessoa + i));
     }
 
     return 0;

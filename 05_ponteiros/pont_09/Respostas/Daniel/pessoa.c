@@ -66,14 +66,14 @@ void AssociaFamiliasGruposPessoas(tPessoa *pessoas) {
         
         if (x != -1) {
             pFilho->mae = (pessoas + x);
-            // pessoas[z].mae = (pessoas + x);
+            // pessoas[z].mae = &pessoas[x];
             // (pessoas + z)->mae = (pessoas + x);
 
         } 
 
         if (y != -1) {
             pFilho->pai = (pessoas + y);
-            // pessoas[z].pai = (pessoas + y);
+            // pessoas[z].pai = &pessoas[y];
             // (pessoas + z)->pai = (pessoas + y);
         } 
     }
