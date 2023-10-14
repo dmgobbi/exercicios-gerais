@@ -5,6 +5,12 @@
 
 tJogador* CriaJogador(int idJogador) {
     tJogador* jogador = (tJogador*) malloc(sizeof(tJogador));
+
+    if (jogador == NULL) {
+        printf("Falha na alocacao de memoria\n");
+        exit(5);
+    }
+
     jogador->id = idJogador;
     return jogador;
 }
