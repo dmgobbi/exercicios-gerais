@@ -1,36 +1,37 @@
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-// #include "locadora.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "locadora.h"
 
-// int main(void) {
-//     char operacao[20];
-//     tLocadora locadora = criarLocadora();
+int main(void) {
+    char operacao[20];
+    tLocadora* locadora = CriarLocadora();
 
-//     while (1) {
-//         scanf("%s", operacao);
+    while (1) {
+        scanf("%s", operacao);
          
-//         if (!strcmp(operacao, "Cadastrar")) {
-//             locadora = lerCadastroLocadora(locadora);
-//             locadora = ordenarFilmesLocadora(locadora);
-//             scanf("%*c");
-//         } else if (!strcmp(operacao, "Alugar")) {
-//             locadora = lerAluguelLocadora(locadora);
-//             scanf("%*c");
-//         } else if (!strcmp(operacao, "Devolver")) {
-//             locadora = lerDevolucaoLocadora(locadora);
-//             scanf("%*c");
-//         } else if (!strcmp(operacao, "Estoque")) {
-//             consultarEstoqueLocadora(locadora);
-//             scanf("%*[^#]#");
-//         }else {
-//             break;
-//         }
+        if (!strcmp(operacao, "Cadastrar")) {
+            LerCadastroLocadora(locadora);
+            OrdenarFilmesLocadora(locadora);
+            scanf("%*c");
+        } else if (!strcmp(operacao, "Alugar")) {
+            LerAluguelLocadora(locadora);
+            scanf("%*c");
+        } else if (!strcmp(operacao, "Devolver")) {
+            LerDevolucaoLocadora(locadora);
+            scanf("%*c");
+        } else if (!strcmp(operacao, "Estoque")) {
+            ConsultarEstoqueLocadora(locadora);
+            scanf("%*[^#]#");
+        }else {
+            break;
+        }
 
-//         *operacao = '\0';
-//     }
+        *operacao = '\0';
+    }
     
-//     consultarLucroLocadora(locadora);
+    ConsultarLucroLocadora(locadora);
+    DestruirLocadora(locadora);
 
-//     return 0;
-// }
+    return 0;
+}
