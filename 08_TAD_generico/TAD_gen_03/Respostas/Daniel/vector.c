@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define INITIAL_CAPACITY 10 
-
 struct Vector {
     data_type *vetor; 
     int tamanho;        
@@ -26,7 +24,7 @@ void VectorPushBack(Vector *v, data_type val) {
 
     v->tamanho++;
 
-    if (!v->tamanho) v->vetor = (data_type *) calloc(INITIAL_CAPACITY, sizeof(data_type));
+    if (!v->tamanho) v->vetor = (data_type *) calloc(1, sizeof(data_type));
     else v->vetor = (data_type *) realloc(v->vetor, v->tamanho * sizeof(data_type));
 
     v->vetor[v->tamanho - 1] = val;
