@@ -55,8 +55,6 @@ Imagem *CriarImagem(int altura, int largura, Tipo tipo) {
 }
 
 Imagem *LerImagem() {
-    printf("Entrou na funcao LerImagem\n"); // DEBUG
-
     int altura, largura, temp;
     Tipo dados;
     if (scanf("%d %d %d\n", &altura, &largura, &temp) != 3) {
@@ -64,14 +62,8 @@ Imagem *LerImagem() {
         exit(EXIT_FAILURE);
     }
 
-    printf("Leu altura, largura e tipo\n"); // DEBUG
-    printf("altura = %d, largura = %d, tipo = %d\n", altura, largura, temp); // DEBUG
-
     dados = (Tipo) temp;
     Imagem *img = CriarImagem(altura, largura, dados);
-    
-    printf("Criou imagem\n"); // DEBUG
-    printf("img = %p\n", img); // DEBUG
 
     int tamanho = altura * largura;
     switch (dados) {
@@ -83,17 +75,12 @@ Imagem *LerImagem() {
                 exit(EXIT_FAILURE);
             }
 
-            printf("Alocou memoria para os dados da imagem\n"); // DEBUG
-            printf("img->dados = %p\n", img->dados); // DEBUG
-
             for (int i = 0; i < tamanho; i++) { 
-                printf("Entrou no for\n"); // DEBUG
                 if (scanf(" %f", ((float *)img->dados) + i) != 1) {
                     printf("Erro ao ler pixel da imagem\n");
                     DestruirImagem(img);
                     exit(EXIT_FAILURE);
                 }
-                printf("Leu pixel %d\n", i); // DEBUG
             }
             break;
         case INT:
@@ -117,6 +104,7 @@ Imagem *LerImagem() {
             DestruirImagem(img);
             exit(EXIT_FAILURE);
     }
+    return img;
 }
 
 void DestruirImagem(Imagem *img) {
