@@ -67,7 +67,6 @@ void AtribuiElementoMatrizGenerica(tMatrizGenerica * m, int l, int c, void* elem
     if (m) {
         void * elemMat = ObtemElementoMatrizGenerica(m, l, c);
         memcpy(elemMat, elem, m->numByteElem);
-
     } else {
         printf("Erro ao atribuir elemento na matriz\n");
         return;

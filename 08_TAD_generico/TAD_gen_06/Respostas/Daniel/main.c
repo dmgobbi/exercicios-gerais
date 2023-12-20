@@ -16,8 +16,6 @@ typedef void (*PrintMatrixFunc)(tMatrizGenerica *, PrintElementFunc);
 
 // Function prototypes
 tMatrizGenerica* readMatrix(int rows, int cols, int elemSize, ReadElementFunc readElem);
-void printMatrix(tMatrizGenerica *mat, PrintElementFunc printElem, PrintMatrixFunc printMat);
-
 void TabelaImprimeMatriz(tMatrizGenerica *mat, int dataType);
 tMatrizGenerica* TabelaConverteMatrizParaComplexo(tMatrizGenerica *mat, int dataType);
 
@@ -29,8 +27,8 @@ int main() {
     while (continueProgram) {
         bool validInput = false;
         while (!validInput) {
-            // Reading the matrix dimensions and data type
             promptMatrixDetailsInput();
+            // Reading the matrix dimensions and data type
             if (scanf("%d %d %d", &rows, &cols, &dataType) != 3) {
                 printf("Error reading matrix dimensions and data type\n");
                 return EXIT_FAILURE;
@@ -72,14 +70,14 @@ int main() {
                 break;
             case 2: // Convert to complex and print
                 cplxMat = TabelaConverteMatrizParaComplexo(mat, dataType);
-                printMatrix(cplxMat, printComplex, ImprimirMatrizGenerica);
+                ImprimirMatrizGenerica(cplxMat, printComplex);
                 DestroiMatrizGenerica(cplxMat);
                 break;
             case 3: // Convert to complex, multiply by its transpose and print              
                 cplxMat = TabelaConverteMatrizParaComplexo(mat, dataType);
                 cplxMatTransp = MatrizTransposta(cplxMat);
                 cplxMatProd = MultiplicaMatrizes(cplxMat, cplxMatTransp, RetornaNumBytesComplexo(), mult_complexo, soma_complexo);
-                printMatrix(cplxMatProd, printComplex, ImprimirMatrizGenerica);
+                ImprimirMatrizGenerica(cplxMatProd, printComplex);
                 DestroiMatrizGenerica(cplxMat);
                 DestroiMatrizGenerica(cplxMatTransp);
                 DestroiMatrizGenerica(cplxMatProd);
@@ -106,18 +104,13 @@ int main() {
                 return EXIT_FAILURE;
         }
     }
-
+    
     DestroiMatrizGenerica(mat);
-
     return EXIT_SUCCESS;
 }
 
 tMatrizGenerica* readMatrix(int rows, int cols, int elemSize, ReadElementFunc readElem) {
     tMatrizGenerica *mat = CriaMatrizGenerica(rows, cols, elemSize);
-    if (!mat) {
-        printf("Error creating matrix\n");
-        exit(1);
-    }
     for (int i = 0; i < ObtemNumeroLinhasMatrizGenerica(mat); i++) {
         for (int j = 0; j < ObtemNumeroColunasMatrizGenerica(mat); j++) {
             readElem(ObtemElementoMatrizGenerica(mat, i, j));
@@ -126,26 +119,22 @@ tMatrizGenerica* readMatrix(int rows, int cols, int elemSize, ReadElementFunc re
     return mat;
 }
 
-void printMatrix(tMatrizGenerica *mat, PrintElementFunc printElem, PrintMatrixFunc printMat) {
-    printMat(mat, printElem);
-}
-
 void TabelaImprimeMatriz(tMatrizGenerica *mat, int dataType) {
     switch (dataType) {
         case 0: // Integer
-            printMatrix(mat, printInt, ImprimirMatrizGenerica);
+            ImprimirMatrizGenerica(mat, printInt);
             break;
         case 1: // Float
-            printMatrix(mat, printFloat, ImprimirMatrizGenerica);
+            ImprimirMatrizGenerica(mat, printFloat);
             break;
         case 2: // Double
-            printMatrix(mat, printDouble, ImprimirMatrizGenerica);
+            ImprimirMatrizGenerica(mat, printDouble);
             break;
         case 3: // Char
-            printMatrix(mat, printChar, ImprimirMatrizGenerica);
+            ImprimirMatrizGenerica(mat, printChar);
             break;
         case 4: // Complex
-            printMatrix(mat, printComplex, ImprimirMatrizGenerica);
+            ImprimirMatrizGenerica(mat, printComplex);
             break;
         default:
             printf("Invalid data type\n");

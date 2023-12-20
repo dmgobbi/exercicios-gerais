@@ -40,23 +40,15 @@ int RetornaNumBytesComplexo() {
 }
 
 tNumComplexo* SomaComplexos(tNumComplexo* n1, tNumComplexo *n2) {
-    tNumComplexo *cplx = (tNumComplexo*) malloc(sizeof(tNumComplexo));
-    if (cplx == NULL) {
-        printf("Erro ao alocar memória para o número complexo\n");
-        exit(1);
-    }
-    cplx->real = n1->real + n2->real;
-    cplx->imag = n1->imag + n2->imag;
+    float real = n1->real + n2->real;
+    float imag = n1->imag + n2->imag;
+    tNumComplexo *cplx = CriaNumComplexo(real, imag);
     return cplx;
 }
 
 tNumComplexo* MultComplexos(tNumComplexo* n1, tNumComplexo* n2) {
-    tNumComplexo *cplx = (tNumComplexo*) malloc(sizeof(tNumComplexo));
-    if (cplx == NULL) {
-        printf("Erro ao alocar memória para o número complexo\n");
-        exit(1);
-    }
-    cplx->real = (n1->real * n2->real) - (n1->imag * n2->imag);
-    cplx->imag = (n1->real * n2->imag) + (n1->imag * n2->real);
+    float real = (n1->real * n2->real) - (n1->imag * n2->imag);
+    float imag = (n1->real * n2->imag) + (n1->imag * n2->real);
+    tNumComplexo *cplx = CriaNumComplexo(real, imag);
     return cplx;
 }
