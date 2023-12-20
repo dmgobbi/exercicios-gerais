@@ -140,7 +140,6 @@ tMatrizGenerica *ConverteTipoMatriz(tMatrizGenerica *mat2, int novoNumByteElem, 
         for (int i = 0; i < mat2->l; i++) {
             for (int j = 0; j < mat2->c; j++) {
                 void *elem = ObtemElementoMatrizGenerica(mat2, i, j);
-                // AtribuiElementoMatrizGenerica(m, i, j, elem);
                 void *new_elem = converte_elem(elem);
                 AtribuiElementoMatrizGenerica(m, i, j, new_elem);
                 free(new_elem); // Free the memory allocated by converte_elem

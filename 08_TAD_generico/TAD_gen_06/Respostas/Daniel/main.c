@@ -17,6 +17,7 @@ tMatrizGenerica* readMatrix(int rows, int cols, int elemSize, ReadElementFunc re
 void printMatrix(tMatrizGenerica *mat, PrintElementFunc printElem, PrintMatrixFunc printMat);
 
 void TabelaImprimeMatriz(tMatrizGenerica *mat, int dataType);
+tMatrizGenerica* TabelaConverteMatrizParaComplexo(tMatrizGenerica *mat, int dataType);
 
 int main() {
     int rows, cols, dataType;
@@ -53,12 +54,13 @@ int main() {
     int op = promptMatrixOperationChoice();
 
     switch (op) {
-        case 1:
+        case 1: // Print
             TabelaImprimeMatriz(mat, dataType);
             break;
-        case 2:
-            // Convert to complex
-            // print the result
+        case 2: // Convert to complex and print
+            tMatrizGenerica *cplxMat = TabelaConverteMatrizParaComplexo(mat, dataType);
+            printMatrix(cplxMat, printComplex, ImprimirMatrizGenerica);
+            DestroiMatrizGenerica(cplxMat);
             break;
         case 3:
             // Convert to complex
@@ -130,6 +132,36 @@ void TabelaImprimeMatriz(tMatrizGenerica *mat, int dataType) {
             printMatrix(mat, printComplex, ImprimirMatrizGenerica);
             break;
         default:
-            printf("Invalid data type\\n");
+            printf("Invalid data type\n");
     }
+}
+
+// Recebe uma matriz generica qualquer e um tipo de dado e a converte para uma matriz de complexos
+tMatrizGenerica* TabelaConverteMatrizParaComplexo(tMatrizGenerica *mat, int dataType) {
+    tMatrizGenerica *cplxMat = CriaMatrizGenerica(ObtemNumeroLinhasMatrizGenerica(mat), ObtemNumeroColunasMatrizGenerica(mat), RetornaNumBytesComplexo());
+    if (!cplxMat) {
+        printf("Error creating matrix\n");
+        exit(1);
+    }
+
+    // Usando a funcao 'tMatrizGenerica *ConverteTipoMatriz(tMatrizGenerica *mat2, int novoNumByteElem, void* (*converte_elem)(void*))' para converter a matriz generica para uma matriz de complexos 
+    switch (dataType) {
+        case 0: // Integer
+            cplxMat = ConverteTipoMatriz(mat, RetornaNumBytesComplexo(), ConverteIntParaComplexo);
+            break;
+        case 1: // Float
+            cplxMat = ConverteTipoMatriz(mat, RetornaNumBytesComplexo(), ConverteFloatParaComplexo);
+            break;
+        case 2: // Double
+            cplxMat = ConverteTipoMatriz(mat, RetornaNumBytesComplexo(), ConverteDoubleParaComplexo);
+            break;
+        case 3: // Char
+            cplxMat = ConverteTipoMatriz(mat, RetornaNumBytesComplexo(), ConverteCharParaComplexo);
+            break;
+        case 4: // Complex
+            break;      
+        default:
+            printf("Invalid data type\n"); 
+    }
+    return cplxMat;
 }
