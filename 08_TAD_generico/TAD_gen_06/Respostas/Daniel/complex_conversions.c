@@ -24,6 +24,7 @@ void* ConverteDoubleParaComplexo(void* elem) {
 
 void* ConverteCharParaComplexo(void* elem) {
     char* caractere = (char*) elem;
-    tNumComplexo* complexo = CriaNumComplexo((float)*caractere, 0.0);
+    int number = *caractere - '0'; // Convert char to its integer equivalent
+    tNumComplexo* complexo = CriaNumComplexo((float)number, 0.0);
     return complexo;
 }

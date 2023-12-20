@@ -3,6 +3,7 @@
 #include "io_operations.h"
 #include "screens.h"
 #include "complex_conversions.h"
+#include "complex_operations.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,9 +20,6 @@ void printMatrix(tMatrizGenerica *mat, PrintElementFunc printElem, PrintMatrixFu
 
 void TabelaImprimeMatriz(tMatrizGenerica *mat, int dataType);
 tMatrizGenerica* TabelaConverteMatrizParaComplexo(tMatrizGenerica *mat, int dataType);
-
-void* mult_complexo(void* a, void* b);
-void* soma_complexo(void* a, void* b);
 
 int main() {
     int rows, cols, dataType;
@@ -73,7 +71,7 @@ int main() {
                 printMatrix(cplxMat, printComplex, ImprimirMatrizGenerica);
                 DestroiMatrizGenerica(cplxMat);
                 break;
-            case 3: // Convert to complex, multiply by its transpose and print
+            case 3: // Convert to complex, multiply by its transpose and print              
                 cplxMat = TabelaConverteMatrizParaComplexo(mat, dataType);
                 cplxMatTransp = MatrizTransposta(cplxMat);
                 cplxMatProd = MultiplicaMatrizes(cplxMat, cplxMatTransp, RetornaNumBytesComplexo(), mult_complexo, soma_complexo);
@@ -173,14 +171,3 @@ tMatrizGenerica* TabelaConverteMatrizParaComplexo(tMatrizGenerica *mat, int data
     return cplxMat;
 }
 
-void* mult_complexo(void* a, void* b) {
-    tNumComplexo* num1 = (tNumComplexo*)a;
-    tNumComplexo* num2 = (tNumComplexo*)b;
-    return MultComplexos(num1, num2);
-}
-
-void* soma_complexo(void* a, void* b) {
-    tNumComplexo* num1 = (tNumComplexo*)a;
-    tNumComplexo* num2 = (tNumComplexo*)b;
-    return SomaComplexos(num1, num2);
-}
