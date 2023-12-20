@@ -24,11 +24,9 @@ tMatrizGenerica* TabelaConverteMatrizParaComplexo(tMatrizGenerica *mat, int data
 int main() {
     int rows, cols, dataType;
     tMatrizGenerica *mat;
-
     bool continueProgram = true;
 
     while (continueProgram) {
-
         bool validInput = false;
         while (!validInput) {
             // Reading the matrix dimensions and data type
@@ -120,13 +118,11 @@ tMatrizGenerica* readMatrix(int rows, int cols, int elemSize, ReadElementFunc re
         printf("Error creating matrix\n");
         exit(1);
     }
-
     for (int i = 0; i < ObtemNumeroLinhasMatrizGenerica(mat); i++) {
         for (int j = 0; j < ObtemNumeroColunasMatrizGenerica(mat); j++) {
             readElem(ObtemElementoMatrizGenerica(mat, i, j));
         }
     }
-
     return mat;
 }
 
@@ -182,4 +178,3 @@ tMatrizGenerica* TabelaConverteMatrizParaComplexo(tMatrizGenerica *mat, int data
     }
     return cplxMat;
 }
-

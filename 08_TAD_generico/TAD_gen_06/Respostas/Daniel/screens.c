@@ -21,29 +21,31 @@ int promptMatrixOperationChoice() {
             return -1;
         } else {
             if (op >= 1 && op <= 3) return op;
+            printf("\n");
         }   
     }
 
 }
 
 int promptEndOrContinue() {
-    printf("Digite a operação desejada\n");
-	printf("\t1 - Entrar com uma nova matriz\n");
-	printf("\t2 - Encerrar o Programa\n");
+    while (1) {
+        printf("Digite a operação desejada\n");
+        printf("\t1 - Entrar com uma nova matriz\n");
+        printf("\t2 - Encerrar o Programa\n");
 
-    int op;
-    if (scanf("%d", &op) != 1) {
-        printf("Error reading operation\n");
-        return -1;
-    }
-
-    switch (op) {
-        case 1:
-            return 1;
-        case 2:
-            return 2;
-        default:
-            printf("Invalid operation in function (promptEndOrContinue)\n");
+        int op;
+        if (scanf("%d", &op) != 1) {
+            printf("Error reading operation\n");
             return -1;
+        }
+
+        switch (op) {
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            default:
+                printf("\n");
+        }
     }
 }
