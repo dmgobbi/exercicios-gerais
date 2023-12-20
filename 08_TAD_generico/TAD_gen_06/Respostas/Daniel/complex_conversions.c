@@ -28,3 +28,9 @@ void* ConverteCharParaComplexo(void* elem) {
     tNumComplexo* complexo = CriaNumComplexo((float)number, 0.0);
     return complexo;
 }
+
+void* CopiaComplexo(void* elem) {
+    tNumComplexo* compl = (tNumComplexo*) elem;
+    tNumComplexo* complexo = CriaNumComplexo(PegaParteRealComplexo(compl), PegaParteImagComplexo(compl));
+    return complexo;
+}

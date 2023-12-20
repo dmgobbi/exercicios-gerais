@@ -28,34 +28,40 @@ int main() {
     bool continueProgram = true;
 
     while (continueProgram) {
-        // Reading the matrix dimensions and data type
-        promptMatrixDetailsInput();
-        if (scanf("%d %d %d", &rows, &cols, &dataType) != 3) {
-            printf("Error reading matrix dimensions and data type\n");
-            return EXIT_FAILURE;
-        }
 
-        switch (dataType) {
-            case 0: // Integer
-                mat = readMatrix(rows, cols, sizeof(int), readInt);
-                break;
-            case 1: // Float
-                mat = readMatrix(rows, cols, sizeof(float), readFloat);
-                break;
-            case 2: // Double
-                mat = readMatrix(rows, cols, sizeof(double), readDouble);
-                break;
-            case 3: // Char
-                mat = readMatrix(rows, cols, sizeof(char), readChar);
-                break;
-            case 4: // Complex
-                mat = readMatrix(rows, cols, RetornaNumBytesComplexo(), readComplex);
-                break;
-            default:
-                printf("Invalid data type\n");
+        bool validInput = false;
+        while (!validInput) {
+            // Reading the matrix dimensions and data type
+            promptMatrixDetailsInput();
+            if (scanf("%d %d %d", &rows, &cols, &dataType) != 3) {
+                printf("Error reading matrix dimensions and data type\n");
                 return EXIT_FAILURE;
+            }
+
+            if (dataType >= 0 && dataType <= 4) validInput = true;
+
+            switch (dataType) {
+                case 0: // Integer
+                    mat = readMatrix(rows, cols, sizeof(int), readInt);
+                    break;
+                case 1: // Float
+                    mat = readMatrix(rows, cols, sizeof(float), readFloat);
+                    break;
+                case 2: // Double
+                    mat = readMatrix(rows, cols, sizeof(double), readDouble);
+                    break;
+                case 3: // Char
+                    mat = readMatrix(rows, cols, sizeof(char), readChar);
+                    break;
+                case 4: // Complex
+                    mat = readMatrix(rows, cols, RetornaNumBytesComplexo(), readComplex);
+                    break;
+                default:
+                    break;
+            }
         }
 
+        printf("\n");
         int op = promptMatrixOperationChoice();
 
         tMatrizGenerica *cplxMat;
@@ -91,6 +97,7 @@ int main() {
 
         switch (op) {
             case 1: // Continue program
+                DestroiMatrizGenerica(mat);
                 break;
             case 2: // End program
                 continueProgram = false;
@@ -164,9 +171,14 @@ tMatrizGenerica* TabelaConverteMatrizParaComplexo(tMatrizGenerica *mat, int data
             break;
         case 3: // Char
             cplxMat = ConverteTipoMatriz(mat, RetornaNumBytesComplexo(), ConverteCharParaComplexo);
-            break;     
+            break;
+        case 4: // Complex
+            cplxMat = ConverteTipoMatriz(mat, RetornaNumBytesComplexo(), CopiaComplexo);
+            break;
         default:
-            printf("Invalid data type\n"); 
+            DestroiMatrizGenerica(mat);
+            printf("Invalid data type in function (TabelaConverteMatrizParaComplexo)\n");
+            exit(EXIT_FAILURE);
     }
     return cplxMat;
 }

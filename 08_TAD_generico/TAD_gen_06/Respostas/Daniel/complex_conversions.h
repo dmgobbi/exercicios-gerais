@@ -5,5 +5,6 @@ void* ConverteIntParaComplexo(void* elem);
 void* ConverteFloatParaComplexo(void* elem);
 void* ConverteDoubleParaComplexo(void* elem);
 void* ConverteCharParaComplexo(void* elem);
+void* CopiaComplexo(void* elem);
 
 #endif /* COMPLEX_CONVERSIONS_H */
