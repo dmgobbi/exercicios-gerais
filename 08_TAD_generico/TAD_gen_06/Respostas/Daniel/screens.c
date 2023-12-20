@@ -16,9 +16,11 @@ int promptMatrixOperationChoice() {
 
     int op;
     if (scanf("%d", &op) != 1) {
-        printf("Error reading operation\n");
+        printf("Error reading operation in function (promptMatrixOperationChoice)\n");
         return -1;
-    }
+    } else {
+        return op;
+    }   
 }
 
 int promptEndOrContinue() {
@@ -38,7 +40,7 @@ int promptEndOrContinue() {
         case 2:
             return 2;
         default:
-            printf("Invalid operation\n");
+            printf("Invalid operation in function (promptEndOrContinue)\n");
             return -1;
     }
 }
