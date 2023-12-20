@@ -1,5 +1,7 @@
 #include "numcomplexo.h"
 #include "matrizgenerica.h"
+#include "io_operations.h"
+#include "screens.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,29 +16,17 @@ typedef void (*PrintMatrixFunc)(tMatrizGenerica *, PrintElementFunc);
 tMatrizGenerica* readMatrix(int rows, int cols, int elemSize, ReadElementFunc readElem);
 void printMatrix(tMatrizGenerica *mat, PrintElementFunc printElem, PrintMatrixFunc printMat);
 
-void readInt(void *elem);
-void printInt(void *elem);
-void readFloat(void *elem);
-void printFloat(void *elem);
-void readDouble(void *elem);
-void printDouble(void *elem);
-void readChar(void *elem);
-void printChar(void *elem);
-void readComplex(void *elem);
-void printComplex(void *elem);
-
 void TabelaImprimeMatriz(tMatrizGenerica *mat, int dataType);
 
 int main() {
     int rows, cols, dataType;
     tMatrizGenerica *mat;
 
-    printf("Digite o número de linhas, colunas e o tipo da matriz (0 – inteiro, 1 – float, 2 – double, 3 – char, 4 – número complexo): \n");
-
     // Reading the matrix dimensions and data type
+    promptMatrixDetailsInput();
     if (scanf("%d %d %d", &rows, &cols, &dataType) != 3) {
         printf("Error reading matrix dimensions and data type\n");
-        return 1;
+        return EXIT_FAILURE;
     }
 
     switch (dataType) {
@@ -57,88 +47,49 @@ int main() {
             break;
         default:
             printf("Invalid data type\\n");
-            return 1;
+            return EXIT_FAILURE;
     }
 
-    printf("Digite a operação desejada\n");
-    printf("\t1 - Apenas imprimir a matriz\n");
-	printf("\t2 - Converter para o tipo complexo e imprimir");
-	printf("\t3 - Calcular e imprimir a multiplicacao da matriz pela sua transposta.");
+    int op = promptMatrixOperationChoice();
 
-    int op;
-
-    while (true) {
-        if (scanf("%d", &op) != 1) {
-            printf("Error reading operation\n");
+    switch (op) {
+        case 1:
+            TabelaImprimeMatriz(mat, dataType);
+            break;
+        case 2:
+            // Convert to complex
+            // print the result
+            break;
+        case 3:
+            // Convert to complex
+            // multiply by its transpose
+            // print the result
+            break;
+        default:
+            printf("Invalid operation\\n");
             DestroiMatrizGenerica(mat);
-            return 1;
-        }
+            return EXIT_FAILURE;
+    }
 
-        switch (op) {
-            case 1:
-                TabelaImprimeMatriz(mat, dataType);
-                break;
-            case 2:
-                // Convert to complex
-                break;
-            case 3:
-                // Multiply by its transpose
-                break;
-            default:
-                printf("Invalid operation\\n");
-                DestroiMatrizGenerica(mat);
-                return 1;
-        }
+    op = promptEndOrContinue();
+
+    switch (op) {
+        case 1:
+            // TODO: Continue (read new matrix)
+            break;
+        case 2:
+            // End
+            DestroiMatrizGenerica(mat);
+            return EXIT_SUCCESS;
+        default:
+            printf("Invalid operation\\n");
+            DestroiMatrizGenerica(mat);
+            return EXIT_FAILURE;
     }
 
     DestroiMatrizGenerica(mat);
 
-    return 0;
-}
-
-void readInt(void *elem) {
-    scanf("%d", (int *)elem);
-}
-
-void printInt(void *elem) {
-    printf("%d", *(int *)elem);
-}
-
-void readFloat(void *elem) {
-    scanf("%f", (float *)elem);
-}
-
-void printFloat(void *elem) {
-    printf("%.2f", *(float *)elem);
-}
-
-void readDouble(void *elem) {
-    scanf("%lf", (double *)elem);
-}
-
-void printDouble(void *elem) {
-    printf("%.2lf", *(double *)elem);
-}
-
-void readChar(void *elem) {
-    scanf(" %c", (char *)elem);
-}
-
-void printChar(void *elem) {
-    printf("%c", *(char *)elem);
-}
-
-void readComplex(void *elem) {
-    float real, imag;
-    scanf(" (%f,%f)", &real, &imag);
-    tNumComplexo *cplx = CriaNumComplexo(real, imag);
-    memcpy(elem, cplx, RetornaNumBytesComplexo());
-    DestroiNumeroComplexo(cplx);
-}
-
-void printComplex(void *elem) {
-    tNumComplexo *cplx = (tNumComplexo *)elem;
-    printf("%.2f + i%.2f", PegaParteRealComplexo(cplx), PegaParteImagComplexo(cplx));
+    return EXIT_SUCCESS;
 }
 
 tMatrizGenerica* readMatrix(int rows, int cols, int elemSize, ReadElementFunc readElem) {

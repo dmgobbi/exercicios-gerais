@@ -67,6 +67,7 @@ void AtribuiElementoMatrizGenerica(tMatrizGenerica * m, int l, int c, void* elem
     if (m) {
         void * elemMat = ObtemElementoMatrizGenerica(m, l, c);
         memcpy(elemMat, elem, m->numByteElem);
+
     } else {
         printf("Erro ao atribuir elemento na matriz\n");
         return;
@@ -113,7 +114,11 @@ tMatrizGenerica *MultiplicaMatrizes(tMatrizGenerica *mat1, tMatrizGenerica *mat2
                     for (int k = 0; k < mat1->c; k++) {
                         void *elem1 = ObtemElementoMatrizGenerica(mat1, i, k);
                         void *elem2 = ObtemElementoMatrizGenerica(mat2, k, j);
-                        elem = soma_elem(elem, multi_elem(elem1, elem2));
+                        void *multi_result = multi_elem(elem1, elem2);
+                        void *soma_result = soma_elem(elem, multi_result);
+                        memcpy(elem, soma_result, numByteTarget);
+                        free(soma_result); // Free the memory allocated by soma_elem
+                        free(multi_result); // Free the memory allocated by multi_elem
                     }
                     AtribuiElementoMatrizGenerica(m, i, j, elem);
                 }
@@ -135,8 +140,10 @@ tMatrizGenerica *ConverteTipoMatriz(tMatrizGenerica *mat2, int novoNumByteElem, 
         for (int i = 0; i < mat2->l; i++) {
             for (int j = 0; j < mat2->c; j++) {
                 void *elem = ObtemElementoMatrizGenerica(mat2, i, j);
-                elem = converte_elem(elem);
-                AtribuiElementoMatrizGenerica(m, i, j, elem);
+                // AtribuiElementoMatrizGenerica(m, i, j, elem);
+                void *new_elem = converte_elem(elem);
+                AtribuiElementoMatrizGenerica(m, i, j, new_elem);
+                free(new_elem); // Free the memory allocated by converte_elem
             }
         }
         return m;
